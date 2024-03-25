@@ -17,10 +17,7 @@ in2A = 11
 in3A = 5
 in4A = 6
 enbA = 13
-V1 = 50
-V2 = 0
-AV1 = 30
-AV2 = 0
+
 
 # Configuración de la biblioteca RPi.GPIO
 GPIO.setmode(GPIO.BCM)
