@@ -18,7 +18,7 @@ while True:
     #---------------------------------------------------
     binary_segmentation, transformed_area = filtros(frame, kernel)
     #---------------------------------------------------
-    distance,v1,v2 = acciones(binary_segmentation,transformed_area)
+    distance,v1,v2 = acciones(binary_segmentation,transformed_area,V_max)
     #---------------------------------------------------
     #funcion 3
     #---------------------------------------------------
