@@ -8,6 +8,7 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 kernel = np.ones((5, 5), np.uint8)
+V_max=50
 # Bucle principal de procesamiento de video
 c=0
 while True:
@@ -17,13 +18,13 @@ while True:
     #---------------------------------------------------
     binary_segmentation, transformed_area = filtros(frame, kernel)
     #---------------------------------------------------
-    distance = acciones(binary_segmentation,transformed_area)
+    distance,v1,v2 = acciones(binary_segmentation,transformed_area)
     #---------------------------------------------------
     #funcion 3
     #---------------------------------------------------
     #funcion 4
     #---------------------------------------------------
-    print(distance)
+    #print(distance)
     # Mostrar el frame en una ventana
     cv2.circle(transformed_area, (320, 300), 5, (0, 255, 255), -1)  # Punto amarillo fijo en (320, 300)
     cv2.imshow('frame', transformed_area)
