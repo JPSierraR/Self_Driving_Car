@@ -1,6 +1,22 @@
 import cv2
 import numpy as np
-def acciones(binary_segmentation,transformed_area):
+
+def control_P(V_max,distance):
+    if distance <= -50:
+        v1 = 0
+        v2 = V_max
+    elif distance>=50:
+        v1 = V_max
+        v2= 0
+    else:
+        v1=int((distance+50)*(V_max/100))
+        v2=int(V_max - (distance+50)*(V_max/100))
+    print(v1)
+    print(v2)
+    return v1,v2
+
+
+def acciones(binary_segmentation,transformed_area,V_max):
     current_row = binary_segmentation[300, :]
     diff = np.where(np.diff(current_row) != 0)[0]
     size_diff = len(diff)
@@ -24,6 +40,8 @@ def acciones(binary_segmentation,transformed_area):
         distance = (320 - avg_diff)
     else:
         distance=0
-    cv2.putText(transformed_area, f"Distancia: {distance:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 255), 2, cv2.LINE_AA)
-
-    return distance
+    cv2.putText(transformed_area, f"Distancia: {distance:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+    
+    v1,v2=control_P(V_max,distance)
+    
+    return distance,v1,v2
